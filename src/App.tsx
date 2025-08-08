@@ -33,7 +33,7 @@ export default function App() {
   const [board, setBoard] = useState<CellValue[]>(Array(9).fill(null))
   const [isXNext, setIsXNext] = useState<boolean>(true)
   const [scores, setScores] = useState<{ X: number; O: number; Draws: number }>({ X: 0, O: 0, Draws: 0 })
-  const [gameMode, setGameMode] = useState<GameMode>('Human')
+  const [gameMode, setGameMode] = useState<GameMode>('CPU')
   const [aiDifficulty, setAiDifficulty] = useState<AiDifficulty>('Medium')
   const [aiPlaysAs, setAiPlaysAs] = useState<Player>('O')
 
