@@ -275,6 +275,9 @@ export default function App() {
           </div>
         </aside>
       </div>
+      <footer className="site-footer footerDiv">
+        Made using only one toe by Akash — Do check out my twitter/X <a href="https://x.com/akashmanwar0" target="_blank" rel="noreferrer noopener">x.com/akashmanwar</a>
+      </footer>
     </div>
   )
 }

@@ -1,2 +1,8 @@
 /* Intentionally minimal; main styles live in index.css */
 .hidden { display: none; }
+
+.footerDiv {
+  margin-top: 100px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}

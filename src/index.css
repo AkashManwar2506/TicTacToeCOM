@@ -33,7 +33,7 @@ body {
   background: var(--bg);
   background-attachment: fixed;
   display: grid;
-  place-items: center;
+  grid-template-rows: 1fr auto;
 }
 
 button {
@@ -256,6 +256,16 @@ button {
   text-align: center;
   color: var(--muted);
   font-size: 12px;
+}
+
+.site-footer {
+  padding: 18px 0 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+.site-footer a {
+  color: var(--accent);
 }
 
 /* ——— Mobile refinements ——— */
