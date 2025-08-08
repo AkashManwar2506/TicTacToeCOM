@@ -76,7 +76,7 @@ export default function App() {
     const humanWon = gameMode === 'CPU' ? winner !== aiPlaysAs : true
     if (!humanWon) return
     const burst = (particleCount: number, spread: number, startVelocity: number) =>
-      confetti({ particleCount, spread, startVelocity, origin: { y: 0.2 } })
+      confetti({ particleCount, spread, startVelocity, origin: { y: 1 } })
     burst(80, 70, 40)
     setTimeout(() => burst(60, 100, 35), 150)
     setTimeout(() => burst(40, 120, 30), 300)
