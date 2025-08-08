@@ -108,6 +108,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .pill {
   border-radius: 12px;
@@ -153,7 +154,7 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  width: min(520px, 90vw);
+  width: min(520px, 96vw);
   margin: 0 auto;
 }
 
@@ -166,7 +167,7 @@ button {
   place-items: center;
   font-family: Poppins, Inter;
   font-weight: 800;
-  font-size: clamp(50px, 8vw, 72px);
+  font-size: clamp(44px, 10.5vw, 72px);
   letter-spacing: -0.03em;
   color: var(--text);
   position: relative;
@@ -255,4 +256,26 @@ button {
   text-align: center;
   color: var(--muted);
   font-size: 12px;
+}
+
+/* ——— Mobile refinements ——— */
+@media (max-width: 720px) {
+  .app-shell { padding: 20px; }
+  .header { flex-direction: column; align-items: stretch; gap: 14px; }
+  .controls { justify-content: center; }
+  .brand-badge { width: 34px; height: 34px; border-radius: 10px; font-size: 14px; }
+  .title h1 { font-size: clamp(18px, 5.6vw, 24px); }
+  .title span { font-size: 11px; }
+  .board-panel { padding: 14px; }
+  .side-panel { padding: 14px; }
+  .scoreboard { grid-template-columns: 1fr; }
+  .actions { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .app-shell { padding: 14px; }
+  .board { gap: 10px; }
+  .cell { border-radius: 14px; font-size: clamp(38px, 12.5vw, 64px); }
+  .pill, .btn, .action-secondary { padding: 9px 12px; border-radius: 10px; }
+  .status .value { font-size: 22px; }
 }
