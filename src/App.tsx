@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import confetti from 'canvas-confetti'
 import './App.css'
 
 type Player = 'X' | 'O'
@@ -68,6 +69,18 @@ export default function App() {
     else if (winner === 'O') setScores((s) => ({ ...s, O: s.O + 1 }))
     else if (winner === 'Draw') setScores((s) => ({ ...s, Draws: s.Draws + 1 }))
   }, [winner])
+
+  // Celebrate wins with confetti (human wins in CPU mode, any win in human vs human)
+  useEffect(() => {
+    if (!winner || winner === 'Draw') return
+    const humanWon = gameMode === 'CPU' ? winner !== aiPlaysAs : true
+    if (!humanWon) return
+    const burst = (particleCount: number, spread: number, startVelocity: number) =>
+      confetti({ particleCount, spread, startVelocity, origin: { y: 0.2 } })
+    burst(80, 70, 40)
+    setTimeout(() => burst(60, 100, 35), 150)
+    setTimeout(() => burst(40, 120, 30), 300)
+  }, [winner, gameMode, aiPlaysAs])
 
   // AI logic
   function computeAIMoveEasy(b: CellValue[], _ai: Player): number {
@@ -171,6 +184,16 @@ export default function App() {
       ? `Computer is thinking…`
       : `${currentPlayer} to play`
 
+  const resultInfo = useMemo(() => {
+    if (!winner) return null
+    if (winner === 'Draw') return { tone: 'draw' as const, message: 'It’s a draw — well played!' }
+    if (gameMode === 'CPU') {
+      if (winner === aiPlaysAs) return { tone: 'lose' as const, message: 'You lose this round — try again!' }
+      return { tone: 'win' as const, message: 'You win! 🎉 Brilliant play!' }
+    }
+    return { tone: 'win' as const, message: `${winner} wins the round!` }
+  }, [winner, gameMode, aiPlaysAs])
+
   return (
     <div className="app-shell">
       <header className="header card-panel">
@@ -225,6 +248,9 @@ export default function App() {
         </div>
       </header>
 
+      {resultInfo && (
+        <div className={`result-banner ${resultInfo.tone}`} role="status" aria-live="polite">{resultInfo.message}</div>
+      )}
       <div className="game-container">
         <section className="board-panel card-panel">
           <div className="board">
