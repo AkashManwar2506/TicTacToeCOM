@@ -70,7 +70,7 @@ export default function App() {
   }, [winner])
 
   // AI logic
-  function computeAIMoveEasy(b: CellValue[], ai: Player): number {
+  function computeAIMoveEasy(b: CellValue[], _ai: Player): number {
     const open = b.map((v, i) => (v === null ? i : -1)).filter((i) => i !== -1)
     if (open.length === 0) return -1
     const r = Math.floor(Math.random() * open.length)
